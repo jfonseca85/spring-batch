@@ -6,15 +6,15 @@ import lombok.Data;
 
 
 @Data
-public class Cotacaomoeda {
+public class CotacaoMoeda {
 	
 	@Id
-	private CotacaomoedaId id;
+	private CotacaoMoedaId id;
 	
 	private String tipo;
 	
-	private String siglaMoeda;
-
+	private int codMoeda;
+	
 	private String taxaCompra;
 
 	private String TaxaVenda;
@@ -63,20 +63,20 @@ public class Cotacaomoeda {
 		this.paridadeVenda = paridadeVenda;
 	}
 
-	public String getSiglaMoeda() {
-		return siglaMoeda;
-	}
-
-	public void setSiglaMoeda(String siglaMoeda) {
-		this.siglaMoeda = siglaMoeda;
-	}
-
-	public CotacaomoedaId getId() {
+	public CotacaoMoedaId getId() {
 		return id;
 	}
 
-	public void setId(CotacaomoedaId id) {
+	public void setId(CotacaoMoedaId id) {
 		this.id = id;
+	}
+
+	public int getCodMoeda() {
+		return codMoeda;
+	}
+
+	public void setCodMoeda(int codMoeda) {
+		this.codMoeda = codMoeda;
 	}
 
 }

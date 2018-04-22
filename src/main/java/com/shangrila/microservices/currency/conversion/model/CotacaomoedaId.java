@@ -5,19 +5,11 @@ import java.io.Serializable;
 import lombok.Value;
 
 @Value
-public class CotacaomoedaId implements Serializable{
-	
+public class CotacaoMoedaId implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	private int codMoeda;
+	private String siglaMoeda;
 	private String data;
-
-	public int getCodMoeda() {
-		return codMoeda;
-	}
-
-	public void setCodMoeda(int codMoeda) {
-		this.codMoeda = codMoeda;
-	}
 
 	public String getData() {
 		return data;
@@ -26,5 +18,13 @@ public class CotacaomoedaId implements Serializable{
 	public void setData(String data) {
 		this.data = data;
 	}
-	
+
+	public String getSiglaMoeda() {
+		return siglaMoeda;
+	}
+
+	public void setSiglaMoeda(String siglaMoeda) {
+		this.siglaMoeda = siglaMoeda;
+	}
+
 }

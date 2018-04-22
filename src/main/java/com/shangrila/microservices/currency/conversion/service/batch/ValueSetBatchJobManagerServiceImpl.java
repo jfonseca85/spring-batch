@@ -16,8 +16,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Service(","
-		+ "")
+@Service("valueSetJobManager")
 @Slf4j
 public class ValueSetBatchJobManagerServiceImpl implements BatchJobManagerService {
     private final JobLauncher jobLauncher;

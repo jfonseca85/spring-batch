@@ -20,7 +20,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import com.shangrila.microservices.currency.conversion.model.Cotacaomoeda;
+import com.shangrila.microservices.currency.conversion.model.CotacaoMoeda;
 import com.shangrila.microservices.currency.conversion.service.batch.MultiResourceItemReaderDataFileReader;
 import com.shangrila.microservices.currency.conversion.service.batch.ValueSetDataFileReader;
 
@@ -35,10 +35,10 @@ public abstract class BatchConfig {
 	
 	@Bean
 	@StepScope
-	protected FlatFileItemReader<Cotacaomoeda> reader() {
+	protected FlatFileItemReader<CotacaoMoeda> reader() {
 
 		// To read lines from an input file
-		FlatFileItemReader<Cotacaomoeda> csvFilereader = new ValueSetDataFileReader();
+		FlatFileItemReader<CotacaoMoeda> csvFilereader = new ValueSetDataFileReader();
 		csvFilereader.setResource(new InputStreamResource(new ByteArrayInputStream(new byte[0])));
 		csvFilereader.setLineMapper(CotacaomoedasLineMapper());
 		return csvFilereader;
@@ -47,10 +47,10 @@ public abstract class BatchConfig {
 
 	@Bean
 	@StepScope
-	protected MultiResourceItemReader<Cotacaomoeda> multiResourceItemReader() {
+	protected MultiResourceItemReader<CotacaoMoeda> multiResourceItemReader() {
 
 		// To read lines from an input file
-		MultiResourceItemReader<Cotacaomoeda> csvFilereader = new MultiResourceItemReaderDataFileReader();
+		MultiResourceItemReader<CotacaoMoeda> csvFilereader = new MultiResourceItemReaderDataFileReader();
 		csvFilereader.setResources(new Resource[0]);
 		csvFilereader.setDelegate(reader());
 		return csvFilereader;
@@ -58,15 +58,15 @@ public abstract class BatchConfig {
 	}
 
 	@Bean
-	protected MongoItemWriter<Cotacaomoeda> writer() {
-		MongoItemWriter<Cotacaomoeda> writer = new MongoItemWriter<Cotacaomoeda>();
+	protected MongoItemWriter<CotacaoMoeda> writer() {
+		MongoItemWriter<CotacaoMoeda> writer = new MongoItemWriter<CotacaoMoeda>();
 		writer.setTemplate(mongoTemplate);
-		writer.setCollection("Cotacaomoedas");
+		writer.setCollection("CotacaoMoeda");
 		return writer;
 	}
 
-	protected LineMapper<Cotacaomoeda> CotacaomoedasLineMapper() {
-		DefaultLineMapper<Cotacaomoeda> valueSetLineMapper = new DefaultLineMapper<>();
+	protected LineMapper<CotacaoMoeda> CotacaomoedasLineMapper() {
+		DefaultLineMapper<CotacaoMoeda> valueSetLineMapper = new DefaultLineMapper<>();
 		valueSetLineMapper.setLineTokenizer(createValueSetLineTokenizer());
 		valueSetLineMapper.setFieldSetMapper(valueSetFieldSetMapper());
 		return valueSetLineMapper;
@@ -75,14 +75,14 @@ public abstract class BatchConfig {
 	protected LineTokenizer createValueSetLineTokenizer() {
 		DelimitedLineTokenizer valueSetLineTokenizer = new DelimitedLineTokenizer();
 		valueSetLineTokenizer.setDelimiter(";");
-		valueSetLineTokenizer.setNames(new String[] { "id.data", "id.codMoeda", "tipo", "siglaMoeda", "taxaCompra",
+		valueSetLineTokenizer.setNames(new String[] { "id.data", "codMoeda", "tipo", "id.siglaMoeda", "taxaCompra",
 				"TaxaVenda", "paridadeCompra", "paridadeVenda" });
 		return valueSetLineTokenizer;
 	}
 
-	protected FieldSetMapper<Cotacaomoeda> valueSetFieldSetMapper() {
-		BeanWrapperFieldSetMapper<Cotacaomoeda> valueSetFieldMapper = new BeanWrapperFieldSetMapper<>();
-		valueSetFieldMapper.setTargetType(Cotacaomoeda.class);
+	protected FieldSetMapper<CotacaoMoeda> valueSetFieldSetMapper() {
+		BeanWrapperFieldSetMapper<CotacaoMoeda> valueSetFieldMapper = new BeanWrapperFieldSetMapper<>();
+		valueSetFieldMapper.setTargetType(CotacaoMoeda.class);
 		return valueSetFieldMapper;
 	}
 

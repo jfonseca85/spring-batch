@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
-import com.shangrila.microservices.currency.conversion.model.Cotacaomoeda;
+import com.shangrila.microservices.currency.conversion.model.CotacaoMoeda;
 import com.shangrila.microservices.currency.conversion.util.LocalDateUtil;
 
 @StepScope
-public class MultiResourceItemReaderDataFileReader extends MultiResourceItemReader<Cotacaomoeda> {
+public class MultiResourceItemReaderDataFileReader extends MultiResourceItemReader<CotacaoMoeda> {
 	@Autowired
 	private ResourceLoader resourceLoader;
 

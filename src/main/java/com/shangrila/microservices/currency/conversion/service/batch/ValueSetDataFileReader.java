@@ -7,13 +7,13 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 
-import com.shangrila.microservices.currency.conversion.model.Cotacaomoeda;
+import com.shangrila.microservices.currency.conversion.model.CotacaoMoeda;
 
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @StepScope
-public class ValueSetDataFileReader extends FlatFileItemReader<Cotacaomoeda> {
+public class ValueSetDataFileReader extends FlatFileItemReader<CotacaoMoeda> {
 
     @Value("#{jobParameters['valueSetCsvdata']}")
     public void setValueSetCsvdata(String valueSetCsvdata) {

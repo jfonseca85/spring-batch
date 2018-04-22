@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.shangrila.microservices.currency.conversion.model.Cotacaomoeda;
+import com.shangrila.microservices.currency.conversion.model.CotacaoMoeda;
 import com.shangrila.microservices.currency.conversion.service.batch.DuplicateRecordSkipListener;
 
 @EnableBatchProcessing
@@ -32,7 +32,7 @@ public class ValuesetBatchScheduleConfig extends BatchConfig {
 	@Bean
 	public Step valueSetStep() {
 		return steps.get("scheduledJob")
-				.<Cotacaomoeda, Cotacaomoeda>chunk(10)
+				.<CotacaoMoeda, CotacaoMoeda>chunk(10)
 				.reader(multiResourceItemReader())
 				.writer(writer())
 				.faultTolerant()
